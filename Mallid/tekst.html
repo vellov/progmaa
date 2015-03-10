@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
+
+    <script src="/res/js/jquery-1.10.0.min.js"></script>
+</head>
+<body>
+<div style="width: 90%">
+    <h5>Küsimuse pealkiri</h5>
+    <form>
+        <div class="form-group">
+            <label for="tekstInput">Labeli tekst (Kui sõna algab "KAS "(kas+tühik)-iga siis true)</label>
+            <input type="text" class="form-control" id="tekstInput" placeholder="Sisesta vastus">
+        </div>
+        <div class="form-group">
+             <input type="button" class="btn btn-default " value="Kontrolli" onclick="check()">
+        </div>
+        <div id="Tagasiside">
+            <span id="TagasisideVastus"></span>
+        </div>
+
+    </form>
+</div>
+<script>
+
+
+    //Vastavad tagasisided ja näitamine
+    function check(){
+        if($('#tekstInput').val().toLowerCase().match('(kas\\s+)')){ //Esimese sõna regex
+            $("#Tagasiside").css("background-color", "#ADFF2F");
+            $('#TagasisideVastus').html("ÕIGE!");                 //tagasiside muutmine
+            $('#Tagasiside').show();
+        }
+        else{
+            $("#Tagasiside").css("background-color", "yellow");
+            $('#TagasisideVastus').html("Vale!");                 //tagasiside muutmine
+            $('#Tagasiside').show();
+        }
+    }
+
+
+</script>
+</body>
+</html>

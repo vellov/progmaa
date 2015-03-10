@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
+
+    <script src="/res/js/jquery-1.10.0.min.js"></script>
+</head>
+<body>
+<div style="width: 90%">
+    <h5>Mida väljastatakse ekraanile?</h5>
+    <p style="font-family:'Courier New'">
+        vastus = "0" + "0" + "7"
+        <br/>
+        if vastus == "007":
+        <br/>
+        &nbsp; print("Õige!")
+        <br/>
+        else:
+        <br/>
+        &nbsp; print("Vale!")
+    </p>
+    <form role="form" class="form-horizontal">
+        <div class="form-group">
+            <div class="col-sm-8 col-md-6 col-lg-5">
+                <input type="button" class="btn btn-default " id="1" value="Vali" onclick="check1()">
+                <span>7</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-8 col-md-6 col-lg-5">
+                <input type="button" class="btn btn-default " id="2" value="Vali" onclick="check2()">
+                <span>007</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-8 col-md-6 col-lg-5">
+                <input type="button" class="btn btn-default " id="3" value="Vali" onclick="check3()">
+                <span>Õige!</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-8 col-md-6 col-lg-5">
+                <input type="button" class="btn btn-default " id="4" value="Vali" onclick="check4()">
+                <span>Vale!</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-8 col-md-6 col-lg-5">
+                <input type="button" class="btn btn-default " id="5" value="Vali" onclick="check5()">
+                <span>Veateade</span>
+            </div>
+        </div>
+        <div id="Tagasiside">
+            <span id="TagasisideVastus"></span>
+        </div>
+    </form>
+
+</div>
+<script>
+    $('#Tagasiside').hide();
+    //Vastavad tagasisided ja näitamine
+    function check1(){
+        activate("1");
+        $("#Tagasiside").css("background-color", "yellow");
+        $('#TagasisideVastus').html("Kahjuks mitte! <br/> Antud programm töötab põhimõttel, mis kontrollib muutujat ja väljastab ekraanile kas \"Õige!\" või \"Vale!\".");
+        $('#Tagasiside').show();
+    }
+    function check2(){
+        activate("2");
+        $("#Tagasiside").css("background-color", "yellow");
+        $('#TagasisideVastus').html("Kahjuks mitte! <br/> Antud programm töötab põhimõttel, mis kontrollib muutujat ja väljastab ekraanile kas \"Õige!\" või \"Vale!\".");
+        $('#Tagasiside').show();
+
+    }
+    function check3(){
+        activate("3");
+        $("#Tagasiside").css("background-color", "#ADFF2F");
+        $('#TagasisideVastus').html('Tubli! <br/> Õige vastus!');
+        $('#Tagasiside').show();
+
+    }
+    function check4(){
+        activate("4");
+        $("#Tagasiside").css("background-color", "yellow");
+        $('#TagasisideVastus').html("Kahjuks mitte! <br/> Programm kontrollib, kas muutuja \"vastus\" omab sõne väärtust \"007\".");
+        $('#Tagasiside').show();
+    }
+    function check5(){
+        activate("5");
+        $("#Tagasiside").css("background-color", "yellow");
+        $('#TagasisideVastus').html("Kahjuks mitte! <br/> Programm töötab Pythonis ilusti.");
+        $('#Tagasiside').show();
+    }
+    function deactivateAll(){
+        $('input[type="button"]').attr('class','btn btn-default');
+    }
+    function activate(id){
+        deactivateAll();
+        $('#'+id).attr('class','btn btn-primary');
+    }
+
+
+</script>
+</body>
+</html>

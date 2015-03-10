@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
+
+    <script src="/res/js/jquery-1.10.0.min.js"></script>
+   </head>
+<body>
+<div style="width: 90%">
+<h5>Järjestage kontserdil käimise tegevused</h5>
+
+
+<form role="form" class="form-horizontal">
+    <div class="form-group">
+        <div class="col-sm-8 col-md-6 col-lg-5">
+            <select  class="form-control" id="nr1" >
+                <option value=''>???</option>
+                <option value="1">Väljun saalist</option>
+                <option value="2">Saan kontserdielamuse</option>
+                <option value="3">Ostan pileti</option>
+                <option value="4">Loen kuulutust</option>
+                <option value="5">Lähen saali</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-8 col-md-6 col-lg-5">
+            <select  class="form-control" id="nr2" >
+                <option value=''>???</option>
+                <option value="1">Väljun saalist</option>
+                <option value="2">Saan kontserdielamuse</option>
+                <option value="3">Ostan pileti</option>
+                <option value="4">Loen kuulutust</option>
+                <option value="5">Lähen saali</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-8 col-md-6 col-lg-5">
+            <select  class="form-control" id="nr3" >
+                <option value=''>???</option>
+                <option value="1">Väljun saalist</option>
+                <option value="2">Saan kontserdielamuse</option>
+                <option value="3">Ostan pileti</option>
+                <option value="4">Loen kuulutust</option>
+                <option value="5">Lähen saali</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-8 col-md-6 col-lg-5">
+            <select  class="form-control" id="nr4" >
+                <option value=''>???</option>
+                <option value="1">Väljun saalist</option>
+                <option value="2">Saan kontserdielamuse</option>
+                <option value="3">Ostan pileti</option>
+                <option value="4">Loen kuulutust</option>
+                <option value="5">Lähen saali</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-8 col-md-6 col-lg-5">
+            <select  class="form-control" id="nr5" >
+                <option value=''>???</option>
+                <option value="1">Väljun saalist</option>
+                <option value="2">Saan kontserdielamuse</option>
+                <option value="3">Ostan pileti</option>
+                <option value="4">Loen kuulutust</option>
+                <option value="5">Lähen saali</option>
+            </select>
+        </div>
+    </div>
+    <input type="button" class="btn btn-default " value="Kontrolli" onclick="check()">
+</form>
+    <div id="Tagasiside">
+       <span id="TagasisideVastus"></span>
+    </div>
+</div>
+<script>
+    function check(){
+        var total=0;
+        if($("#nr1").val()==4){
+            $("#nr1").css("background-color", "#ADFF2F");
+            total=total+20;
+        }
+        else{
+            $("#nr1").css("background-color", "#FF6666");
+        }
+        if($("#nr2").val()==3){
+            $("#nr2").css("background-color", "#ADFF2F");
+            total=total+20;
+        }
+        else{
+            $("#nr2").css("background-color", "#FF6666");
+        }
+        if($("#nr3").val()==5){
+            $("#nr3").css("background-color", "#ADFF2F");
+            total=total+20;
+        }
+        else{
+            $("#nr3").css("background-color", "#FF6666");
+        }
+        if($("#nr4").val()==2){
+            $("#nr4").css("background-color", "#ADFF2F");
+            total=total+20;
+        }
+        else{
+            $("#nr4").css("background-color", "#FF6666");
+        }
+        if($("#nr5").val()==1){
+            $("#nr5").css("background-color", "#ADFF2F");
+            total=total+20;
+        }
+        else{
+            $("#nr5").css("background-color", "#FF6666");
+        }
+        $("#TagasisideVastus").html("Sinu tulemus: "+total+"%");
+        $('#Tagasiside').show();
+    }
+</script>
+</body>
+</html>

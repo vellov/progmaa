@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
+
+    <script src="/res/js/jquery-1.10.0.min.js"></script>
+</head>
+<body>
+<div style="width: 90%">
+    <h5>Küsimuse pealkiri</h5>
+    <span>Küsimus - Mitu mulli on mullivees?</span>
+
+    <form role="form" class="form-horizontal">
+        <div class="radio">
+            <label>
+                <input type="radio" name="Radio" id="Radio1" value="1">
+                Vastus 1
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input type="radio" name="Radio" id="Radio2" value="2">
+                Vastus 2
+            </label>
+        </div>
+        <div class="radio ">
+            <label>
+                <input type="radio" name="Radio" id="Radio3" value="3" >
+                Vastus 3
+            </label>
+        </div>
+        <div class="radio ">
+            <label>
+                <input type="radio" name="Radio" id="Radio4" value="4" >
+                Vastus 4
+            </label>
+        </div>
+        <div class="radio ">
+            <label>
+                <input type="radio" name="Radio" id="Radio5" value="5" >
+                Vastus 5
+            </label>
+        </div>
+            <input type="button" class="btn btn-default " value="Kontrolli" onclick="check()">
+        <div id="Tagasiside">
+            <span id="TagasisideVastus"></span>
+        </div>
+    </form>
+</div>
+
+<script>
+    function check() {
+        var valitud=$("input[name=Radio]:checked").val();
+        if(valitud=="1"){
+            $("#Tagasiside").css("background-color", "#ADFF2F");
+            $('#TagasisideVastus').html("Tegid maru hea valiku!");
+            $('#Tagasiside').show();
+        }
+        else if(valitud=="2"){
+            $("#Tagasiside").css("background-color", "yellow"); //värvus
+            $('#TagasisideVastus').html("Vale vastus");
+            $('#Tagasiside').show();
+        }
+        else{
+            $("#Tagasiside").css("background-color", "yellow"); //värvus
+            $('#TagasisideVastus').html("Vale vastus (3-4-5)");
+            $('#Tagasiside').show();
+        }
+    }
+</script>
+</body>
+</html>

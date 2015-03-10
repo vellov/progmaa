@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
+
+    <script src="/res/js/jquery-1.10.0.min.js"></script>
+</head>
+<body>
+<div style="width: 90%">
+    <h3>Küsimuse pealkiri</h3>
+    <span>Küsimus - Õige valik = 3 esimest</span>
+
+    <form id="form">
+        <div class="checkbox" >
+            <label id="nr1">
+                <input type="checkbox" name="valik" value="1" id="1">
+                Valikvastus nr 1
+            </label>
+        </div>
+        <div class="checkbox ">
+            <label id="nr2">
+                <input type="checkbox" name="valik" value="2" id="2">
+                Valikvastus nr 2
+            </label>
+        </div>
+        <div class="checkbox ">
+            <label id="nr3">
+                <input type="checkbox" name="valik" value="3" id="3">
+                Valikvastus nr 3
+            </label>
+        </div>
+        <div class="checkbox ">
+            <label id="nr4">
+                <input type="checkbox" name="valik" value="4" id="4">
+                Valikvastus nr 4
+            </label>
+        </div>
+        <div class="checkbox ">
+            <label id="nr5">
+                <input type="checkbox" name="valik" value="5" id="5">
+                Valikvastus nr 5
+            </label>
+        </div>
+        <div class="form-group">
+            <input type="button" class="btn btn-default " value="Kontrolli" onclick="check()">
+        </div>
+        <div id="Tagasiside">
+            <span id="TagasisideVastus"></span>
+        </div>
+    </form>
+</div>
+
+
+<script>
+
+    //Kontroll ja näitamine
+    function check() {
+        var vastuseid=3;//mitu õiget vastust on
+        var tulemus=0;
+        if($("#1").is(':checked')){
+            tulemus++;
+        }
+        if($("#2").is(':checked')){
+            tulemus++;
+        }
+        if($("#3").is(':checked')){
+            tulemus++;
+        }
+        if($("#4").is(':checked')){
+            tulemus--;
+        }
+        if($("#5").is(':checked')){
+            tulemus--;
+        }
+        if(tulemus==vastuseid){
+            $("#Tagasiside").css("background-color", "#ADFF2F");
+            $("#TagasisideVastus").html("Tubli!");
+        }
+        else {
+            $("#Tagasiside").css("background-color", "yellow"); //värvus
+            $("#TagasisideVastus").html("Midagi läks valesti :(");
+        }
+
+
+    }
+</script>
+</body>
+</html>
