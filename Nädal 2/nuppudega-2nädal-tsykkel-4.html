@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
+
+    <script src="/res/js/jquery-1.10.0.min.js"></script>
+</head>
+<body>
+<div style="width: 90%">
+    <h5>Mis ilmub ekraanile?</h5>
+    <p style="font-family:'Courier New'">
+        i = 0
+        <br/>
+        while i < 5:
+        <br/>
+        &nbsp; i = i + 1
+        <br/>
+        print(i)
+    </p>
+    <form role="form" class="form-horizontal">
+        <div class="form-group">
+            <div class="col-sm-8 col-md-6 col-lg-5">
+                <input type="button" class="btn btn-default " id="1" value="Vali" onclick="check1()">
+                <span>0</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-8 col-md-6 col-lg-5">
+                <input type="button" class="btn btn-default " id="2" value="Vali" onclick="check2()">
+                <span>5</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-8 col-md-6 col-lg-5">
+                <input type="button" class="btn btn-default " id="3" value="Vali" onclick="check3()">
+                <span>6</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-8 col-md-6 col-lg-5">
+                <input type="button" class="btn btn-default " id="4" value="Vali" onclick="check4()">
+                <span>Arvud 1 kuni 5 üksteise all</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-8 col-md-6 col-lg-5">
+                <input type="button" class="btn btn-default " id="5" value="Vali" onclick="check5()">
+                <span>Veateade</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-8 col-md-6 col-lg-5">
+                <input type="button" class="btn btn-default " id="6" value="Vali" onclick="check6()">
+                <span>Mitte ükski eeltoodutest</span>
+            </div>
+        </div>
+        <div id="Tagasiside">
+            <span id="TagasisideVastus"></span>
+        </div>
+    </form>
+
+</div>
+<script>
+    $('#Tagasiside').hide();
+    //Vastavad tagasisided ja näitamine
+    function check1(){
+        activate("1");
+        $("#Tagasiside").css("background-color", "yellow");
+        $('#TagasisideVastus').html("Muutuja <i>i</i> väärtus muutub tsüklis.");
+        $('#Tagasiside').show();
+    }
+    function check2(){
+        activate("2");
+        $("#Tagasiside").css("background-color", "#ADFF2F");
+        $('#TagasisideVastus').html("Õige vastus!");
+        $('#Tagasiside').show();
+
+    }
+    function check3(){
+        activate("3");
+        $("#Tagasiside").css("background-color", "yellow");
+        $('#TagasisideVastus').html("Muutuja <i>i</i> väärtus ei saa nii suureks.");
+        $('#Tagasiside').show();
+
+    }
+    function check4(){
+        activate("4");
+        $("#Tagasiside").css("background-color", "yellow");
+        $('#TagasisideVastus').html("See oleks siis, kui rida <i>print(i)</i> oleks tsükli sees (ehk oleks kirjutatud taandega).");
+        $('#Tagasiside').show();
+    }
+    function check5(){
+        activate("5");
+        $("#Tagasiside").css("background-color", "yellow");
+        $('#TagasisideVastus').html("Programm töötab Pythonis ilusti.");
+        $('#Tagasiside').show();
+    }
+    function check6(){
+        activate("6");
+        $("#Tagasiside").css("background-color", "yellow");
+        $('#TagasisideVastus').html("Kahjuks mitte! <br/> Ekraanile tuleb üks eeltoodutest.");
+        $('#Tagasiside').show();
+    }
+    function deactivateAll(){
+        $('input[type="button"]').attr('class','btn btn-default');
+    }
+    function activate(id){
+        deactivateAll();
+        $('#'+id).attr('class','btn btn-primary');
+    }
+
+
+</script>
+</body>
+</html>
