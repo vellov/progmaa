@@ -17,12 +17,16 @@
         trükiAB()<br/>
         NameError: name 'trükiAB' is not defined
     </span>
-    <form>
+    <form class="form-horizontal">
         <div class="form-group">
+            <div class=" col-md-2">
             <input type="text" class="form-control" id="tekstInput" placeholder="Sisesta vastus">
+                </div>
         </div>
         <div class="form-group">
+            <div class=" col-md-2">
              <input type="button" class="btn btn-default " value="Kontrolli" onclick="check()">
+                </div>
         </div>
         <div id="Tagasiside">
             <span id="TagasisideVastus"></span>
@@ -35,7 +39,7 @@
 
     //Vastavad tagasisided ja näitamine
     function check(){
-        if($('#tekstInput').val().toLowerCase().match('(32)')){ //Esimese sõna regex
+        if($('#tekstInput').val()=="32"){ //Esimese sõna match
             $("#Tagasiside").css("background-color", "#ADFF2F");
             $('#TagasisideVastus').html("Õige!");                 //tagasiside muutmine
             $('#Tagasiside').show();
