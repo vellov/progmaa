@@ -1,0 +1,64 @@
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head lang="en"&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"&gt;
+    &lt;!--&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"&gt;&lt;/script&gt;--&gt;
+
+    &lt;script src="/res/js/jquery-1.10.0.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div style="width: 90%"&gt;
+    &lt;h5&gt;{{question.question}}&lt;/h5&gt;
+    <div ng-if="question.code">
+        &lt;p style="font-family:'Courier New'" &gt;
+            {{question.code | formatCode}}
+        &lt;/p&gt;
+    </div>
+
+    &lt;form id="form" class="form-horizontal"&gt;
+        <div ng-repeat="button in question.buttons">
+        &lt;div class="checkbox" &gt;
+            &lt;label id="nr{{button.id}}"&gt;
+                &lt;input type="checkbox" name="valik" id="{{button.id}}"&gt;
+                {{button.answer}}
+            &lt;/label&gt;
+        &lt;/div&gt;
+        </div>
+        &lt;br/&gt;
+        &lt;div class="form-action"&gt;
+            &lt;input type="button" class="btn btn-default " value="Kontrolli" onclick="check()"&gt;
+        &lt;/div&gt;
+        &lt;div id="Tagasiside"&gt;
+            &lt;span id="TagasisideVastus"&gt;&lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/form&gt;
+&lt;/div&gt;
+
+
+&lt;script&gt;
+
+    //Kontroll ja näitamine
+    function check() {
+        var vastuseid={{question.checkboxAnswers.length}};//mitu õiget vastust on
+        var tulemus=0;
+        <div ng-repeat="nupp in question.buttons">
+        if($("#{{nupp.id}}").is(':checked')){
+            {{question.checkboxAnswers.indexOf(nupp.id.valueOf())>-1?'tulemus++':'tulemus--'}};
+        }
+        </div>
+        if(tulemus==vastuseid){
+            $("#Tagasiside").css("background-color", "#ADFF2F");
+            $("#TagasisideVastus").html("{{question.rightAnswer}}");
+        }
+        else {
+            $("#Tagasiside").css("background-color", "yellow"); //värvus
+            $("#TagasisideVastus").html("{{question.wrongAnswer}}");
+        }
+
+
+    }
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;

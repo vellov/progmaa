@@ -1,7 +1,7 @@
 /**
  * Created by vellovaherpuu on 08/02/15.
  */
-var app = angular.module('Generaator', ['ngRoute']);
+var app = angular.module('Generaator', ['ngRoute','checklist-model']);
 
 //Controllers
 app.controller('MainController', function($scope,$window) {
@@ -11,7 +11,12 @@ app.controller('MainController', function($scope,$window) {
         rightAnswer:'',
         question:'',
         buttons:{},
-        code:''
+        code:'',
+        checkboxAnswers:[]
+    };
+    $scope.codeTemplates={
+        "button":'app/partials/code-template-button.html',
+        "checkbox":'app/partials/code-template-checkbox.html'
     };
     $scope.$watch("question.answerAmount", function(newValue,oldValue) {
         $scope.question.buttons={};
@@ -25,7 +30,6 @@ app.controller('MainController', function($scope,$window) {
         }
     });
     $scope.openNewWindow=function(){
-        console.log($("#kood").html());
         var mywind=$window.open();
         mywind.document.write("<pre>");
         mywind.document.write($("#kood").html().replace(/^\s*[\r\n]/gm,''));

@@ -16,8 +16,8 @@
                 <label class="checkbox">Küsimuse tüüp</label>
                 <select ng-model="question.type" class="form-control" required  >
                     <option value="button">Nuppudega</option>
+                    <option value="checkbox">Checkbox</option>
                     <!--   <option value="select">Valikvastused</option>
-                       <option value="radio">Radio</option>
                        <option value="check">Checkbox</option>
                        <option value="text">Text</option>
                        -->
@@ -27,13 +27,32 @@
                 <label class="checkbox">Vastuste arv</label>
                 <input ng-model="question.answerAmount" type="text" class="form-control" required>
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-if="question.type=='button'">
                 <label class="checkbox">Õige vastuse Nr.</label>
                 <input ng-model="question.rightAnswer" type="text" class="form-control" required>
             </div>
-            <div ng-repeat="nupp in question.buttons">
+            <div ng-if="question.type=='checkbox'">
+                <div ng-repeat="nupp in question.buttons">
+                    <div class="form-group">
+                        <label class="checkbox">{{nupp.id}}. Vastus</label>
+                        <div ng-if="question.type=='checkbox'"><input type="checkbox" checklist-model="question.checkboxAnswers" checklist-value="nupp.id"> <span>Õige vastus</span></div>
+                        <input ng-model="nupp.answer" type="text" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox">Õige vastuse tagasiside</label>
+                    <input ng-model="question.rightAnswer" type="text" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox">Vale vastuse tagasiside</label>
+                    <input ng-model="question.wrongAnswer" type="text" class="form-control" required>
+                </div>
+            </div>
+            <div ng-repeat="nupp in question.buttons" ng-if="question.type=='button'">
                 <div class="form-group">
                     <label class="checkbox">{{nupp.id}}. Vastus</label>
+
+                    <div ng-if="question.type=='checkbox'"><input type="checkbox" checklist-model="question.checkboxAnswers" checklist-value="nupp.id"> <span>Õige vastus</span></div>
                     <input ng-model="nupp.answer" type="text" class="form-control" required>
                 </div>
                 <div class="form-group">
@@ -48,6 +67,6 @@
             <button type="button" class="btn btn-success pull-left m-l-lg" ng-click="selectText('kood')">Vali kõik</button>
             <button type="button" class="btn btn-success pull-right m-l-sm" ng-click="openNewWindow()">Ava uuel lehel</button>
         <h4 class="text-center"> Genereeritud HTML kood</h4>
-        <pre ng-include="'app/partials/code-template-button.html'" contenteditable="true" id="kood"></pre>
+        <pre ng-include="codeTemplates[question.type]" contenteditable="true" id="kood"></pre>
     </div>
 </div>
