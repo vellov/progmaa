@@ -1,0 +1,53 @@
+<div>
+    <h3 class="text-center">Aine "Programmeermine maalähedaselt" Küsimuste-HTML-Generaator</h3>
+
+    <div class="col-md-6">
+        <form class="form-horizontal">
+            <h4>Küsimuse koostamise valikud</h4>
+            <div class="form-group">
+                <label class="checkbox">Küsimus</label>
+                <input ng-model="question.question" type="text" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="code">Koodijupp</label>
+                <textarea class="form-control" ng-model="question.code" rows="5" id="code"></textarea>
+            </div>
+            <div class="form-group">
+                <label class="checkbox">Küsimuse tüüp</label>
+                <select ng-model="question.type" class="form-control" required  >
+                    <option value="button">Nuppudega</option>
+                    <!--   <option value="select">Valikvastused</option>
+                       <option value="radio">Radio</option>
+                       <option value="check">Checkbox</option>
+                       <option value="text">Text</option>
+                       -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="checkbox">Vastuste arv</label>
+                <input ng-model="question.answerAmount" type="text" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label class="checkbox">Õige vastuse Nr.</label>
+                <input ng-model="question.rightAnswer" type="text" class="form-control" required>
+            </div>
+            <div ng-repeat="nupp in question.buttons">
+                <div class="form-group">
+                    <label class="checkbox">{{nupp.id}}. Vastus</label>
+                    <input ng-model="nupp.answer" type="text" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox">{{nupp.id}}. Vastuse tagasiside</label>
+                    <input ng-model="nupp.feedback" type="text" class="form-control" required>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="col-md-6">
+            <button type="button" class="btn btn-success pull-left m-l-lg" ng-click="selectText('kood')">Vali kõik</button>
+            <button type="button" class="btn btn-success pull-right m-l-sm" ng-click="openNewWindow()">Ava uuel lehel</button>
+        <h4 class="text-center"> Genereeritud HTML kood</h4>
+        <pre ng-include="'app/partials/code-template-button.html'" contenteditable="true" id="kood"></pre>
+    </div>
+</div>

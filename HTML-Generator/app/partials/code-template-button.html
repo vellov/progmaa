@@ -1,0 +1,62 @@
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head lang="en"&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"&gt;
+
+    //Localhostis testimiseks olev jQuery src
+    &lt;!--&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"&gt;&lt;/script&gt;--&gt;
+
+    //Courses'is oleva jQuery src
+    &lt;script src="/res/js/jquery-1.10.0.min.js"&gt;&lt;/script&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div style="width: 90%"&gt;
+    &lt;h5&gt;{{question.question}}&lt;/h5&gt;
+        <div ng-if="question.code">
+    &lt;p style="font-family:'Courier New'" &gt;
+            {{question.code | formatCode}}
+    &lt;/p&gt;
+        </div>
+    &lt;form role="form" class="form-horizontal"&gt;
+        <div ng-repeat="button in question.buttons">
+        &lt;div class="form-group"&gt;
+            &lt;div class="col-sm-8 col-md-6 col-lg-5"&gt;
+                &lt;input type="button" class="btn btn-default " id="{{button.id}}" value="{{button.name}}" onclick="check{{button.id}}()"&gt;
+                &lt;span&gt;{{button.answer}}&lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        </div>
+        &lt;div id="Tagasiside"&gt;
+            &lt;span id="TagasisideVastus"&gt;&lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/form&gt;
+
+&lt;/div&gt;
+&lt;script&gt;
+
+    $('#Tagasiside').hide();
+    //Vastavad tagasisided ja näitamine
+    <div ng-repeat="button in question.buttons">
+    //Vastus - {{button.answer}}
+    function check{{button.id}}(){
+        activate("{{button.id}}");
+        $("#Tagasiside").css("background-color", "{{button.id==question.rightAnswer ? "#ADFF2F" : "yellow"}}");
+        $('#TagasisideVastus').html("{{button.feedback}}");
+        $('#Tagasiside').show();
+        }
+    </div>
+    function deactivateAll(){
+        $('input[type="button"]').attr('class','btn btn-default');
+    }
+    function activate(id){
+        deactivateAll();
+        $('#'+id).attr('class','btn btn-primary');
+    }
+
+
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
