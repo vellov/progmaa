@@ -16,14 +16,14 @@
             {{question.code | formatCode}}
         &lt;/p&gt;
     </div>
-
     &lt;form id="form" class="form-horizontal"&gt;
         <div ng-repeat="button in question.buttons">
         &lt;div class="checkbox" &gt;
             &lt;label id="nr{{button.id}}"&gt;
                 &lt;input type="checkbox" name="valik" id="{{button.id}}"&gt;
-                {{button.answer}}
+                {{button.answer}} &lt;span id="TagasisideVastus{{button.id}}"&gt;&lt;/span&gt;
             &lt;/label&gt;
+
         &lt;/div&gt;
         </div>
         &lt;br/&gt;
@@ -41,20 +41,27 @@
 
     //Kontroll ja näitamine
     function check() {
-        var vastuseid={{question.checkboxAnswers.length}};//mitu õiget vastust on
-        var tulemus=0;
+        var oigeid=0;
+        var valesid=0;
         <div ng-repeat="nupp in question.buttons">
         if($("#{{nupp.id}}").is(':checked')){
-            {{question.checkboxAnswers.indexOf(nupp.id.valueOf())>-1?'tulemus++':'tulemus--'}};
+            {{nupp.isAnswer==1 ?'oigeid++':'valesid++'}};
+            {{nupp.isAnswer==1 ?'$("#TagasisideVastus'+nupp.id+'").css("background-color", "#ADFF2F")':'$("#TagasisideVastus'+nupp.id+'").css("background-color", "yellow")'}};
+            {{nupp.isAnswer==1 ?'$("#TagasisideVastus'+nupp.id+'").html("'+nupp.feedback+'")':'$("#TagasisideVastus'+nupp.id+'").html("'+nupp.wrongFeedback+'")'}};
+        }
+        else{
+            {{nupp.isAnswer!=1 ?'oigeid++':'valesid++'}};
+            {{nupp.isAnswer!=1 ?'$("#TagasisideVastus'+nupp.id+'").css("background-color", "#ADFF2F")':'$("#TagasisideVastus'+nupp.id+'").css("background-color", "yellow")'}};
+            {{nupp.isAnswer!=1 ?'$("#TagasisideVastus'+nupp.id+'").html("'+nupp.feedback+'")':'$("#TagasisideVastus'+nupp.id+'").html("'+nupp.wrongFeedback+'")'}};
         }
         </div>
-        if(tulemus==vastuseid){
+        if(valesid==0){
             $("#Tagasiside").css("background-color", "#ADFF2F");
-            $("#TagasisideVastus").html("{{question.rightAnswer}}");
+            $("#TagasisideVastus").html("Õigesti "+oigeid);
         }
         else {
             $("#Tagasiside").css("background-color", "yellow"); //värvus
-            $("#TagasisideVastus").html("{{question.wrongAnswer}}");
+            $("#TagasisideVastus").html("Õigesti "+oigeid+", valesti "+valesid);
         }
 
 

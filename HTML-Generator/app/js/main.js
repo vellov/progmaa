@@ -11,8 +11,7 @@ app.controller('MainController', function($scope,$window) {
         rightAnswer:'',
         question:'',
         buttons:{},
-        code:'',
-        checkboxAnswers:[]
+        code:''
     };
     $scope.codeTemplates={
         "button":'app/partials/code-template-button.html',
@@ -26,6 +25,10 @@ app.controller('MainController', function($scope,$window) {
             newButton.name="Vali";
             newButton.answer="";
             newButton.feedback="";
+            if($scope.question.type=='checkbox'){
+                newButton.feedback='Õige!';
+                newButton.wrongFeedback='Vale!'
+            }
             $scope.question.buttons[i]=(newButton);
         }
     });
@@ -37,7 +40,6 @@ app.controller('MainController', function($scope,$window) {
     };
     $scope.selectText=function( containerid ) {
         var node = document.getElementById( containerid );
-        console.log(containerid);
         if ( document.selection ) {
             var range = document.body.createTextRange();
             range.moveToElementText( node  );
