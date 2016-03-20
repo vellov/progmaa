@@ -74,3 +74,65 @@ app.config(['$routeProvider', function($routeProvider)  {
         });
     $routeProvider.otherwise({redirectTo: '/'});
 }]);
+
+app.config(['$compileProvider', function ($compileProvider) {
+    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|tel|file|blob|data):/);
+}]);
+
+
+app.directive('downloadText', function($compile, $window, $sce){
+    return {
+        restrict: 'A', // only activate on element attribute
+        require: '?ngModel', // get a hold of NgModelController
+        link:function($scope, element, attrs, ngModel){
+            if (!ngModel) return; // do nothing if no ng-model
+
+            // Specify how UI should be updated
+            ngModel.$render = function() {
+                element.html($sce.getTrustedHtml(ngModel.$viewValue || ''));
+            };
+
+            // Listen for change events to enable binding
+            element.on('blur keyup change', function() {
+                $scope.$evalAsync(read);
+            });
+            read(); // initialize
+
+            // Write data to the model
+            function read() {
+                var html = element.html();
+                // When we clear the content editable the browser leaves a <br> behind
+                // If strip-br attribute is provided then we strip this out
+                if ( attrs.stripBr && html == '<br>' ) {
+                    html = '';
+                }
+                ngModel.$setViewValue(html);
+            }
+
+
+            var button = angular.element('<a ng-href="{{fileUrl}}" download="enesetest" class="btn btn-primary pull-right">Lae alla</a>');
+
+            $scope.updateText = function(){
+                var data = element[0].innerText;
+                var blob = new Blob([data], { type: 'text/html' });
+                var url = $window.URL || $window.webkitURL;
+                $scope.fileUrl = url.createObjectURL(blob);
+            };
+            $scope.$watch(function () {
+                return ngModel.$modelValue + element[0].innerText;
+            }, function(newValue) {
+                $scope.updateText();
+            });
+
+            $scope.$on("$destroy", function(){
+                button.remove();
+            });
+
+            button = $compile(button)($scope);
+            element.parent().prepend(button);
+
+
+        }
+    }
+});
+

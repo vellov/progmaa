@@ -65,8 +65,7 @@
     </div>
     <div class="col-md-6">
             <button type="button" class="btn btn-success pull-left m-l-lg" ng-click="selectText('kood')">Vali kõik</button>
-            <button type="button" class="btn btn-success pull-right m-l-sm" ng-click="openNewWindow()">Ava uuel lehel</button>
         <h4 class="text-center"> Genereeritud HTML kood</h4>
-        <pre ng-include="codeTemplates[question.type]" contenteditable="true" id="kood"></pre>
+        <pre ng-include="codeTemplates[question.type]" ng-model="content" contenteditable="true" id="kood" download-text></pre>
     </div>
 </div>
