@@ -5,10 +5,8 @@
     &lt;title&gt;&lt;/title&gt;
     &lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"&gt;
 
-    //Localhostis testimiseks olev jQuery src
     &lt;!--&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"&gt;&lt;/script&gt;--&gt;
 
-    //Courses'is oleva jQuery src
     &lt;script src="/res/js/jquery-1.10.0.min.js"&gt;&lt;/script&gt;
 
 &lt;/head&gt;
@@ -29,21 +27,20 @@
             &lt;/div&gt;
         &lt;/div&gt;
         </div>
-        &lt;div id="Tagasiside"&gt;
+        &lt;div id="Tagasiside" class="alert hidden" style="margin-bottom:0"&gt;
             &lt;span id="TagasisideVastus"&gt;&lt;/span&gt;
         &lt;/div&gt;
     &lt;/form&gt;
 
 &lt;/div&gt;
 &lt;script&gt;
-
-    $('#Tagasiside').hide();
     //Vastavad tagasisided ja näitamine
     <div ng-repeat="button in question.buttons">
     //Vastus - {{button.answer}}
     function check{{button.id}}(){
         activate("{{button.id}}");
-        $("#Tagasiside").css("background-color", "{{button.id==question.rightAnswer ? "#ADFF2F" : "yellow"}}");
+        $("#Tagasiside").removeClass("hidden");
+        $("#Tagasiside").addClass("{{button.id == question.rightAnswer ? "alert-success" : "alert-warning"}}");
         $('#TagasisideVastus').html("{{button.feedback}}");
         $('#Tagasiside').show();
         }
