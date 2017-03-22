@@ -1,57 +1,67 @@
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head lang="en"&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;title&gt;&lt;/title&gt;
-    &lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;title&gt;&lt;/title&gt;
+&lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"&gt;
 
-    &lt;!--&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"&gt;&lt;/script&gt;--&gt;
+&lt;style&gt;
+<ng-include src="'app/partials/code-template-css.css'"></ng-include>
+&lt;/style&gt;
 
-    &lt;script src="/res/js/jquery-1.10.0.min.js"&gt;&lt;/script&gt;
 
 &lt;/head&gt;
 &lt;body&gt;
 &lt;div style="width: 90%"&gt;
-    &lt;h5&gt;{{question.question}}&lt;/h5&gt;
-        <div ng-if="question.code">
+&lt;h5&gt;{{question.question}}&lt;/h5&gt;
+<div ng-if="question.code">
     &lt;p style="font-family:'Courier New'" &gt;
-            {{question.code | formatCode}}
+    {{question.code | formatCode}}
     &lt;/p&gt;
-        </div>
-    &lt;form role="form" class="form-horizontal"&gt;
-        <div ng-repeat="button in question.buttons">
-        &lt;div class="form-group"&gt;
-            &lt;div class="col-sm-8 col-md-6 col-lg-5"&gt;
-                &lt;input type="button" class="btn btn-default " id="{{button.id}}" value="{{button.name}}" onclick="check{{button.id}}()"&gt;
-                &lt;span&gt;{{button.answer}}&lt;/span&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-        </div>
-        &lt;div id="Tagasiside" class="alert hidden" style="margin-bottom:0"&gt;
-            &lt;span id="TagasisideVastus"&gt;&lt;/span&gt;
-        &lt;/div&gt;
-    &lt;/form&gt;
+</div>
+&lt;form role="form" class="form-horizontal"&gt;
+<div ng-repeat="button in question.buttons">
+    &lt;div class="form-group"&gt;
+    &lt;div class="col-sm-8 col-md-6 col-lg-5"&gt;
+    &lt;input type="button" class="btn btn-default " id="{{button.id}}" value="{{button.name}}" onclick="check{{button.id}}()"&gt;
+    &lt;span&gt;{{button.answer}}&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;/div&gt;
+</div>
+&lt;div id="Tagasiside"&gt;
+&lt;span id="TagasisideVastus"&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;/form&gt;
 
 &lt;/div&gt;
 &lt;script&gt;
-    //Vastavad tagasisided ja näitamine
-    <div ng-repeat="button in question.buttons">
+
+var feedbackElement = document.getElementById("Tagasiside");
+var feedbackAnswerElement = document.getElementById("TagasisideVastus");
+
+feedbackElement.style.display = "none";
+
+<div ng-repeat="button in question.buttons">
     //Vastus - {{button.answer}}
     function check{{button.id}}(){
         activate("{{button.id}}");
-        $("#Tagasiside").removeClass("hidden");
-        $("#Tagasiside").addClass("{{button.id == question.rightAnswer ? "alert-success" : "alert-warning"}}");
-        $('#TagasisideVastus').html("{{button.feedback}}");
-        $('#Tagasiside').show();
-        }
-    </div>
-    function deactivateAll(){
-        $('input[type="button"]').attr('class','btn btn-default');
+
+        feedbackElement.className = "feedback " + "{{button.id == question.rightAnswer ? "feedback-success" : "feedback-error"}}";
+        feedbackAnswerElement.innerHTML = "{{button.feedback}}";
+        feedbackElement.style.display = "block";
     }
-    function activate(id){
-        deactivateAll();
-        $('#'+id).attr('class','btn btn-primary');
+</div>
+function deactivateAll(){
+    var buttons = document.querySelectorAll("input[type=button]");
+    for (i = 0; i < buttons.length; i++) {
+        buttons[i].className = "btn btn-default";
     }
+}
+
+function activate(id){
+    deactivateAll();
+    document.getElementById(id).className = "btn btn-primary";
+}
 
 
 &lt;/script&gt;

@@ -1,0 +1,50 @@
+body {
+  margin-left: 20px;
+  background-color: #fafbfc;
+}
+
+.btn {
+  margin-right: 1%;
+  outline: 0!important;
+}
+
+.btn-default {
+  border-color: #eae5c7;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default:active {
+  background-color: #fffbe5;
+}
+
+.btn-primary {
+  background-color: #FFA852;
+  border-color: #e59749;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+  background-color: #e59749;
+  border-color: #e59749;
+}
+
+.feedback {
+  display: block;
+  padding: 5px;
+}
+
+.feedback-success {
+  background-color: #adeb70;
+}
+
+.feedback-error {
+  background-color: #ffff8c;
+}
+
+.feedback-checkbox {
+  padding-left: 5px;
+  padding-right: 5px;
+  display: inline-block;
+}
+
+.m-b-10 {
+  margin-bottom: 10px;
+}
