@@ -5,6 +5,10 @@
         <form class="form-horizontal">
             <h4>Küsimuse koostamise valikud</h4>
             <div class="form-group">
+                <label>Stiil</label>
+                <select ng-model="question.style" class="form-control" ng-options="option.name for option in cssTemplates track by option.name"></select>
+            </div>
+            <div class="form-group">
                 <label class="checkbox">Küsimus</label>
                 <input ng-model="question.question" type="text" class="form-control" required>
             </div>

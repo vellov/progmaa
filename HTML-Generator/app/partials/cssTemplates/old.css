@@ -1,0 +1,20 @@
+.feedback {
+  display: block;
+  padding: 5px;
+}
+
+.feedback-success {
+  background-color: #ADFF2F;
+}
+
+.feedback-error {
+  background-color: #FFFF00;
+}
+
+.feedback-checkbox {
+  display: inline-block;
+}
+
+.m-b-10 {
+  margin-bottom: 10px;
+}

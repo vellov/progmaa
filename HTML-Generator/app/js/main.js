@@ -5,18 +5,33 @@ var app = angular.module('Generaator', ['ngRoute','checklist-model']);
 
 //Controllers
 app.controller('MainController', function($scope,$window) {
+
+    $scope.codeTemplates = {
+        "button":'app/partials/code-template-button.html',
+        "checkbox":'app/partials/code-template-checkbox.html'
+    };
+
+    $scope.cssTemplates = [
+        {
+            name: "Vana (Maalähedane, PA1)",
+            template: "app/partials/cssTemplates/old.css"
+        },
+        {
+            name: "Uus (PA2)",
+            template: "app/partials/cssTemplates/pa2.css"
+        }
+    ];
+
     $scope.question = {
         type: "button",
         answerAmount: '',
         rightAnswer:'',
         question:'',
         buttons:{},
-        code:''
+        code:'',
+        style: $scope.cssTemplates[0]
     };
-    $scope.codeTemplates={
-        "button":'app/partials/code-template-button.html',
-        "checkbox":'app/partials/code-template-checkbox.html'
-    };
+    
     $scope.$watch("question.answerAmount", function(newValue,oldValue) {
         $scope.question.buttons={};
         for(var i=1;i<=newValue;i++){
