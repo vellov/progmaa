@@ -24,7 +24,7 @@
     &lt;div class="form-group"&gt;
     &lt;div class="col-sm-8 col-md-6 col-lg-5"&gt;
     &lt;input type="button" class="btn btn-default " id="{{button.id}}" value="{{button.name}}" onclick="check{{button.id}}()"&gt;
-    &lt;span&gt;{{button.answer}}&lt;/span&gt;
+    &lt;span&gt;{{button.answer | codeFilter}}&lt;/span&gt;
     &lt;/div&gt;
     &lt;/div&gt;
 </div>
@@ -47,7 +47,7 @@ feedbackElement.style.display = "none";
         activate("{{button.id}}");
 
         feedbackElement.className = "feedback " + "{{button.id == question.rightAnswer ? "feedback-success" : "feedback-error"}}";
-        feedbackAnswerElement.innerHTML = "{{button.feedback}}";
+        feedbackAnswerElement.innerHTML = "{{button.feedback | codeFilter}}";
         feedbackElement.style.display = "block";
     }
 </div>

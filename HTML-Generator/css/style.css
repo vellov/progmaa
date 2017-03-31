@@ -12,3 +12,7 @@
     max-height: 400px;
     overflow: auto;
 }
+
+.text-code {
+    font-family: "Courier New";
+}

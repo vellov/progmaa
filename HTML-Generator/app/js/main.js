@@ -1,7 +1,7 @@
 /**
  * Created by vellovaherpuu on 08/02/15.
  */
-var app = angular.module('Generaator', ['ngRoute','checklist-model']);
+var app = angular.module('Generaator', ['ngRoute', 'checklist-model']);
 
 //Controllers
 app.controller('MainController', function($scope,$window) {

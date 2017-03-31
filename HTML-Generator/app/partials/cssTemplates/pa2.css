@@ -48,3 +48,7 @@ body {
 .m-b-10 {
   margin-bottom: 10px;
 }
+
+.text-code {
+  font-family: "Courier New";
+}
