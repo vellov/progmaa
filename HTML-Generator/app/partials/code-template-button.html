@@ -13,7 +13,7 @@
 &lt;/head&gt;
 &lt;body&gt;
 &lt;div style="width: 90%"&gt;
-&lt;h5&gt;{{question.question}}&lt;/h5&gt;
+&lt;h5&gt;{{question.question | codeFilter}}&lt;/h5&gt;
 <div ng-if="question.code">
     &lt;p style="font-family:'Courier New'" &gt;
     {{question.code | formatCode}}
